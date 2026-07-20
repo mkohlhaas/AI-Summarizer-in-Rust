@@ -1,0 +1,11 @@
+[package]
+name = "ai_summarizer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.53.0", features = ["full"] }
+
+# Modern Rust AI Agent Framework
+rig-core = "0.30"
