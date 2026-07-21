@@ -36,7 +36,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = gemini::Client::new(&api_key);
     let summarizer_agent = client.unwrap()
         .agent("gemini-3.5-flash") 
-        .preamble("You are an expert AI text summarizer. Extract the core points. Provide a brief overview, followed by 3-5 punchy bullet points. Be concise.")
+        .preamble("You are an expert AI text summarizer. Extract the core points. Provide a brief overview, followed by 3-10 punchy bullet points. Be concise.")
         .build();
 
     println!("Generating summary... Please wait.\n");
