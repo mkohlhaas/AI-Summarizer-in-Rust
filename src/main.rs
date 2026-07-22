@@ -47,7 +47,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // 6. Print results
     println!("========= AI SUMMARY OF: {} =========", file_path);
-    println!("{}", summary_output);
+    println!("\n{}\n", summary_output);
     println!("==================================================");
 
     Ok(())
