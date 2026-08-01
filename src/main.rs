@@ -28,7 +28,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Ok(());
     }
 
-    println!("File: {}", file_path_short);
     let input_text = fs::read_to_string(file_path)?;
 
     if input_text.trim().is_empty() {
