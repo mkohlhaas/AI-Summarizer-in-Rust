@@ -3,6 +3,8 @@ use std::env;
 use std::fs;
 use std::path::Path;
 
+use chrono::Local;
+
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 1. Ensure the API key is present
@@ -16,15 +18,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("Example: cargo run -- document.txt");
         return Ok(());
     }
-    let file_path = &args[1];
+    let file_path_str = &args[1];
+    let file_path = Path::new(file_path_str);
+    let file_path_short = file_path.file_name().unwrap().to_str().unwrap();
 
     // 3. Verify the file exists and read it
-    if !Path::new(file_path).exists() {
-        println!("Error: The file '{}' does not exist.", file_path);
+    if !file_path.exists() {
+        println!("Error: The file '{}' does not exist.", file_path_str);
         return Ok(());
     }
 
-    println!("Reading file: {}...", file_path);
+    println!("File: {}", file_path_short);
     let input_text = fs::read_to_string(file_path)?;
 
     if input_text.trim().is_empty() {
@@ -39,14 +43,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .preamble("You are an expert AI text summarizer. Extract the core points. Provide a brief overview, followed by 3-10 punchy bullet points. Be concise.")
         .build();
 
-    println!("Generating summary... Please wait.\n");
+    // print local date and time
+    let local_time = Local::now();
+    let formatted_local = local_time.format("%Y-%m-%d %H:%M:%S");
+    println!("Creation Date:  {}\n", formatted_local);
 
     // 5. Query the model
     let prompt_message = format!("Please summarize this text file:\n\n{}", input_text);
     let summary_output = summarizer_agent.prompt(&prompt_message).await?;
 
     // 6. Print results
-    println!("========= AI SUMMARY OF: {} =========", file_path);
+    println!("========= AI SUMMARY OF: {} =========", file_path_short);
     println!("\n{}\n", summary_output);
     println!("==================================================");
 

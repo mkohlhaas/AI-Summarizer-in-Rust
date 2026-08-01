@@ -9,3 +9,4 @@ tokio = { version = "1.53.0", features = ["full"] }
 
 # Modern Rust AI Agent Framework
 rig-core = "0.30"
+chrono = "0.4.45"
