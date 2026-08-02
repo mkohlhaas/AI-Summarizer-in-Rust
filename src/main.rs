@@ -52,7 +52,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let summary_output = summarizer_agent.prompt(&prompt_message).await?;
 
     // 6. Print results
-    println!("========= AI SUMMARY OF: {} =========", file_path_short);
+    println!("========= {} =========", file_path_short);
     println!("\n{}\n", summary_output);
     println!("==================================================");
 
