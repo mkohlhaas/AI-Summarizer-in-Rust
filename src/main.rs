@@ -54,7 +54,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 6. Print results
     println!("========= {} =========", file_path_short);
     println!("\n{}\n", summary_output);
-    println!("==================================================");
 
     Ok(())
 }
