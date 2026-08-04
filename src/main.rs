@@ -45,7 +45,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // print local date and time
     let local_time = Local::now();
     let formatted_local = local_time.format("%Y-%m-%d %H:%M:%S");
-    println!("Creation Date:  {}\n", formatted_local);
+    println!("Creation Date: {}\n", formatted_local);
 
     // 5. Query the model
     let prompt_message = format!("Please summarize this text file:\n\n{}", input_text);
